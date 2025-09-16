@@ -6,7 +6,20 @@ namespace Hangman
     {
         static void Main(string[] args)
         {
-            string[] animals = { "elephant", "giraffe", "alligator", "kangaroo", "dolphin", "lion", "ostrich", "penguin" };
+            Console.WriteLine("Welcome to Hangman!");
+            Console.WriteLine("Loading words...");
+            string[] animals;
+            try
+            {
+                animals = File.ReadAllLines("animals.txt");
+            }
+            catch
+            {
+                Console.WriteLine("Error: 'animals.txt' file not found. Please ensure the file is in the correct location.");
+                return;
+            }
+            Console.WriteLine("Words loaded successfully!");
+            //string[] animals = { "elephant", "giraffe", "alligator", "kangaroo", "dolphin", "lion", "ostrich", "penguin" };
             Console.WriteLine("Guess a letter to complete an animal!");
             Random random = new Random();
             string word = animals[random.Next(animals.Length)];
@@ -41,12 +54,12 @@ namespace Hangman
                     else
                     {
                         attemptsLeft--;
-                        Console.WriteLine($"Wrong guess! The letter '{guessedLetter}' is not in the word.");
                     }
                 }
                 else
                 {
                     Console.WriteLine("Please enter a single valid letter.");
+                    Console.ReadKey();
                 }
             }
             if (new string(guessedLetters) == word)
@@ -55,6 +68,17 @@ namespace Hangman
                 Console.WriteLine("");
                 DisplayHangman(-1);
                 Console.WriteLine($"Congratulations! You've guessed the word: {word}");
+                Console.WriteLine("Would you like to try again? (y/n)");
+                string? playAgain = Console.ReadLine();
+                if (playAgain == "Y" || playAgain == "y")
+                {
+                    Main(args);
+                }
+                else
+                {
+                    Console.WriteLine("Thanks for playing!");
+                    Console.ReadKey();
+                }
             }
             else
             {
@@ -63,6 +87,17 @@ namespace Hangman
                 DisplayHangman(attemptsLeft);
                 Console.WriteLine("Game over! You ran out of attempts.");
                 Console.WriteLine($"The word was: {word}");
+                Console.WriteLine("Would you like to try again? (y/n)");
+                string? playAgain = Console.ReadLine();
+                if (playAgain == "Y" || playAgain == "y")
+                {
+                    Main(args);
+                }
+                else
+                {
+                    Console.WriteLine("Thanks for playing!");
+                    Console.ReadKey();
+                }
 
             }
 
