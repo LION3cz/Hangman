@@ -1,0 +1,8 @@
+elephant
+giraffe
+alligator
+kangaroo
+dolphin
+lion
+ostrich
+penguin
