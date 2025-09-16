@@ -1,4 +1,4 @@
-﻿using System.Formats.Asn1;
+using System.Formats.Asn1;
 
 namespace Hangman
 {
@@ -18,7 +18,9 @@ namespace Hangman
             int attemptsLeft = 6;
             while (attemptsLeft > 0 && new string(guessedLetters) != word)
             {
-
+                Console.Clear();
+                Console.WriteLine("");
+                DisplayHangman(attemptsLeft);
                 Console.WriteLine($"Word: {new string(guessedLetters)}");
                 Console.WriteLine($"Attempts left: {attemptsLeft}");
                 Console.Write("Enter a letter: ");
@@ -49,18 +51,98 @@ namespace Hangman
             }
             if (new string(guessedLetters) == word)
             {
+                Console.Clear();
+                Console.WriteLine("");
+                DisplayHangman(-1);
                 Console.WriteLine($"Congratulations! You've guessed the word: {word}");
             }
             else
             {
+                Console.Clear();
+                Console.WriteLine("");
+                DisplayHangman(attemptsLeft);
                 Console.WriteLine("Game over! You ran out of attempts.");
                 Console.WriteLine($"The word was: {word}");
 
             }
-            
-
 
         }
+        static void DisplayHangman(int attemptsLeft)
+        {
+            switch (attemptsLeft)
+            {
+                case 6:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case 5:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("  O   |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case 4:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("  O   |");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case 3:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("  O   |");
+                    Console.WriteLine(" /|   |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case 2:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("  O   |");
+                    Console.WriteLine(" /|\\  |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case 1:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("  O   |");
+                    Console.WriteLine(" /|\\  |");
+                    Console.WriteLine(" /    |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case 0:
+                    Console.WriteLine("  +---+");
+                    Console.WriteLine("  |   |");
+                    Console.WriteLine("  O   |");
+                    Console.WriteLine(" /|\\  |");
+                    Console.WriteLine(" / \\  |");
+                    Console.WriteLine("      |");
+                    Console.WriteLine("=========");
+                    break;
+                case -1:
+                    Console.WriteLine("        ");
+                    Console.WriteLine("    :D  ");
+                    Console.WriteLine("   /|\\  ");
+                    Console.WriteLine("   / \\  ");
+                    Console.WriteLine("=========");
+                    break;
+            }
+}
     }
 
 }
